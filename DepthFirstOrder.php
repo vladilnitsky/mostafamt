@@ -27,7 +27,7 @@ class DepthFirstOrder
     public function __construct(Digraph $g)
     {
         for ($i = 0; $i < $g->V(); $i++) {
-            if (!$this->marked[$i]) {
+            if (empty($this->marked[$i])) {
                 $this->dfs($g, $i);
             }
         }
@@ -43,7 +43,7 @@ class DepthFirstOrder
         $this->pre[] = $v;
         $this->marked[$v] = true;
         foreach ($g->adj($v) as $w) {
-            if (!$this->marked[$w]) {
+            if (empty($this->marked[$w])) {
                 $this->dfs($g, $w);
             }
         }

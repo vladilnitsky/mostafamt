@@ -27,7 +27,7 @@ class DirectedCycle
     public function __construct(Digraph $g)
     {
         for ($i = 0; $i < $g->V(); $i++) {
-            if (!$this->marked[$i]) {
+            if (empty($this->marked[$i])) {
                 $this->dfs($g, $i);
             }
         }
@@ -45,10 +45,10 @@ class DirectedCycle
             if ($this->hasCycle()) {
                 return;
             }
-            if(!$this->marked[$w]) {
+            if(empty($this->marked[$w])) {
                 $this->edgeTo[$w] = $v;
                 $this->dfs($g, $w);
-            } else if($this->onStack[$w]) {
+            } else if(!empty($this->onStack[$w])) {
                 $this->cycle = [];
                 for($x = $v; $x !== $w; $x = $this->edgeTo[$x]) {
                     array_unshift($this->cycle, $x);

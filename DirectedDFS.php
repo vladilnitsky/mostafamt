@@ -20,7 +20,7 @@ class DirectedDFS
     {
         if (is_array($source)) {
             foreach ($source as $s) {
-                if (!$this->marked[$s]) {
+                if (empty($this->marked[$s])) {
                     $this->dfs($g, $s);
                 }
             }
@@ -37,7 +37,7 @@ class DirectedDFS
     {
         $this->marked[$v] = true;
         foreach ($g->adj($v) as $w) {
-            if (!$this->marked[$w]) {
+            if (empty($this->marked[$w])) {
                 $this->dfs($g, $w);
             }
         }
